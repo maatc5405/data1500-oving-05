@@ -74,7 +74,96 @@ LIMIT 10;
 (10 rows)
 
 #### 3.
+hobbyhuset=# 
+SELECT 
+DISTINCT 
+Stilling 
+FROM Ansatt;
 
+       stilling        
+-----------------------
+ Kundebehandler
+ Markedssjef
+ Innkjøper
+ Daglig leder
+ Lagermedarbeider
+ Produktutvikler
+ Regnskapssekretær
+ Databaseadministrator
+ Lagerleder
+(9 rows)
+
+#### 4.
+hobbyhuset=# 
+SELECT VNr, Betegnelse, Pris 
+FROM Vare;
+
+  vnr  |           betegnelse           |   pris   
+-------+--------------------------------+----------
+ 10820 | Dukkehår, hvitt                |    53.50
+ 10822 | Dukkehår, lys brunt            |    53.50
+ 10830 | Nisseskjegg, 30 cm             |    66.50
+ 10835 | Trollhår, hvitt                |    95.00
+ 10854 | Bomullsgarn, grått             |    45.50
+ 11630 | Skinnsnor, natur               |    53.50
+ 12054 | Hengebjørk                     |   412.50
+ 12055 | Røsslyng                       |   274.50
+ 12056 | Einer 'Blåmann'                |   220.50
+ 12088 | Einer 'Tyrihans'               |   247.00
+ 12089 | Gran, standard                 |   166.00
+ 12090 | Hvitgran                       |   221.00
+ 12091 | Sølvgran 'Globosa'             |   329.50
+ 12092 | Europabarlind                  |   274.50
+ 13001 | Glasskuler, 100 gr             |    44.00
+ 15207 | Antron garn, hvit              |    28.50
+ 15208 | Antron garn, gul               |    28.50
+ 15211 | Tubeflue verktøy               |   240.00
+ 15217 | Kram tørrfluekorker, 5stk      |    37.00
+ 15559 | Kakepapir, sølv                |    44.00
+ 20936 | Fjær, natur                    |    29.00
+ 20980 | Naturfjær                      |    31.50
+--More-- 
+
+#### 5. 
+hobbyhuset=# 
+SELECT Navn AS "Kategorinavn", KatNr AS "KategoriID" 
+FROM Kategori;
+
+       Kategorinavn        | KategoriID 
+---------------------------+------------
+ Hageutstyr                |          1
+ Hobbymaling               |          2
+ Keramikk                  |          3
+ Konfekt og marsipan       |          4
+ Kurver og fletting        |          5
+ Tekstil, søm og strikking |          6
+ Fiske                     |          7
+ Jakt                      |          8
+ Modellbygging             |          9
+ Bøker                     |         10
+ Leker                     |         11
+ Hagemøbler                |         12
+ Dukker og nisser          |         13
+ Busker                    |         14
+ Blomsterfrø               |         15
+ Blomsterløker             |         16
+ Dekorasjoner              |         17
+ Grønnsaksfrø              |         18
+ Tresløyd                  |         19
+ Hobbypakker               |         20
+ Gjødsel                   |         21
+(21 rows)
+
+#### 6.
+hobbyhuset=# 
+SELECT COUNT(*) 
+FROM Kunde 
+CROSS JOIN Ordre;
+
+    count  
+--------------
+ 1122304
+(1 row)
 
 
 ## Oppgave 2: WHERE-klausulen
