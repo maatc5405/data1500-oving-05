@@ -172,13 +172,132 @@ CROSS JOIN Ordre;
 3.  `SELECT Fornavn, Etternavn FROM Kunde WHERE PostNr = '0001' OR PostNr = '0002';`
 4.  `SELECT Betegnelse FROM Vare WHERE NOT KatNr = 1;
 
-1.  **Forklaring:** ...
+1.  **Forklaring:** 
+    Fra tabellen Vare henter den ut alle varer som koster over 500. 
 
-2.  **Forklaring:** ...
+2.  **Forklaring:** 
+    Denne SQL-Spørring prøver å hente ut alle stillingene med titellen "Salgssjef" og som har årslønn over 600000 fra tabellen Ansatt.
 
-3.  **Forklaring:** ...
+3.  **Forklaring:** 
+    Henter kolonnene fornavn og etternavn fra tabellen kunder som har postNr = 001 eller postNr = 0002.
 
-4.  **Forklaring:** ...
+4.  **Forklaring:** 
+    Henter kolonnen betegnelse fra tabellen vare hvor alle datene blir hent ut bortsett fra KatNr = 1.
+
+### DEL 2
+
+#### 1. 
+hobbyhuset=# 
+SELECT * 
+FROM Vare 
+WHERE Pris > 200 AND Pris < 500;
+
+  vnr  |           betegnelse           |  pris  | katnr | antall | hylle 
+-------+--------------------------------+--------+-------+--------+-------
+ 12054 | Hengebjørk                     | 412.50 |    14 |      0 | D01
+ 12055 | Røsslyng                       | 274.50 |    14 |      0 | D01
+ 12056 | Einer 'Blåmann'                | 220.50 |    14 |      0 | D01
+ 12088 | Einer 'Tyrihans'               | 247.00 |    14 |      0 | D01
+ 12090 | Hvitgran                       | 221.00 |    14 |      0 | D01
+ 12091 | Sølvgran 'Globosa'             | 329.50 |    14 |      0 | D01
+ 12092 | Europabarlind                  | 274.50 |    14 |      0 | D01
+ 15211 | Tubeflue verktøy               | 240.00 |     7 |     39 | B42
+ 21037 | Figurtråd, 50 m                | 338.00 |    17 |      0 | B36
+ 22055 | Bensinkanne 5 ltr., grønn      | 246.50 |     1 |    110 | A27
+ 25079 | Trillebår                      | 384.00 |     1 |     46 | A11
+ 25121 | Hafa elektrisk hekksaks Z3     | 481.50 |     1 |    110 | A12
+ 25136 | Juwa Anleggspade               | 207.00 |     1 |      6 | A30
+ 25137 | Juwa Snøskuffe, standard       | 262.00 |     1 |     30 | A04
+ 25154 | Ljå                            | 317.00 |     1 |      4 | A17
+ 32191 | Formgummi 0.5 l                | 462.00 |     3 |     88 | B04
+ 43014 | Treramme A4                    | 428.00 |    17 |     24 | B25
+ 43015 | Treramme A5                    | 331.00 |    17 |      0 | B32
+ 49921 | Lezlo leire, økonomipakke      | 411.00 |     3 |    164 | B04
+ 55130 | Moro med marsipan              | 343.50 |    10 |    140 | C20
+ 64511 | Lilje sibir, 20 stk.           | 261.50 |    16 |    278 | E03
+ 64552 | Storblomstret begonia, 20 stk. | 317.00 |    16 |     42 | E03
+--More-- 
+
+
+#### 2.
+hobbyhuset=# 
+SELECT * 
+FROM Ansatt 
+WHERE Stilling = 'Lagermedarbeider' OR Stilling = 'Innkjøper';
+
+ ansnr | fornavn | etternavn  |        adresse        | postnr | fødselsdato | kjønn |     stilling     |  Årslønn  
+-------+---------+------------+-----------------------+--------+-------------+-------+------------------+-----------
+     3 | Morgan  | Dalland    | Jansbergveien 19      | 3830   | 1974-01-10  | M     | Innkjøper        | 670500.00
+    11 | Oliver  | Abrahamsen | Tarjei Vesaas' vei 3A | 3812   | 1989-01-20  | M     | Lagermedarbeider | 466900.00
+(2 rows)
+
+### 3.
+hobbyhuset=# 
+SELECT * 
+FROM Kunde 
+WHERE (PostNr='3199' OR PostNr='1711') 
+AND Fornavn LIKE 'A%';
+
+ knr  | fornavn |  etternavn   |    adresse    | postnr 
+------+---------+--------------+---------------+--------
+ 5813 | Amina   | Alexandersen | Asylplassen 2 | 3199
+(1 row)
+
+### 4.
+SELECT * FROM Vare WHERE NOT KatNr=1 AND Antall>600;
+  vnr  |       betegnelse        |  pris  | katnr | antall | hylle 
+-------+-------------------------+--------+-------+--------+-------
+ 33044 | Blandet blomsterfrø     |  16.50 |    15 |   1080 | E05
+ 33045 | Blomkarse               |  20.50 |    15 |   1206 | E05
+ 33046 | Brudeslør               |  17.00 |    15 |    640 | E05
+ 41098 | Keramisk leire          |  95.00 |     3 |    834 | B02
+ 42939 | Pepperkakeformer, 15stk | 109.00 |     4 |    640 | B09
+ 42941 | Julesett                |  82.00 |    17 |   1040 | B29
+ 45923 | Krukke med føtter, 12cm |  48.00 |    17 |    604 | B32
+ 72777 | Julehobbypakke for barn | 177.00 |    20 |    820 | A06
+ 80692 | Rørespatel              |  45.50 |     4 |    602 | B17
+ 82093 | Rund gulrot             |  28.00 |    18 |    658 | E25
+(10 rows)
+
+### 5.
+SELECT * FROM Vare WHERE NOT KatNr=1 AND Antall>600;
+  vnr  |       betegnelse        |  pris  | katnr | antall | hylle 
+-------+-------------------------+--------+-------+--------+-------
+ 33044 | Blandet blomsterfrø     |  16.50 |    15 |   1080 | E05
+ 33045 | Blomkarse               |  20.50 |    15 |   1206 | E05
+ 33046 | Brudeslør               |  17.00 |    15 |    640 | E05
+ 41098 | Keramisk leire          |  95.00 |     3 |    834 | B02
+ 42939 | Pepperkakeformer, 15stk | 109.00 |     4 |    640 | B09
+ 42941 | Julesett                |  82.00 |    17 |   1040 | B29
+ 45923 | Krukke med føtter, 12cm |  48.00 |    17 |    604 | B32
+ 72777 | Julehobbypakke for barn | 177.00 |    20 |    820 | A06
+ 80692 | Rørespatel              |  45.50 |     4 |    602 | B17
+ 82093 | Rund gulrot             |  28.00 |    18 |    658 | E25
+(10 rows)
+
+### 5. 
+hobbyhuset=# 
+SELECT * 
+FROM Ordre 
+WHERE SendtDato IS NOT NULL AND BetaltDato IS NULL;
+
+ ordrenr | ordredato | sendtdato | betaltdato | knr 
+---------+-----------+-----------+------------+-----
+(0 rows)
+
+### 6.
+hobbyhuset=# 
+SELECT * 
+FROM Ansatt 
+WHERE Etternavn 
+ILIKE'%sen%';
+
+ ansnr | fornavn | etternavn  |        adresse        | postnr | fødselsdato | kjønn |     stilling      |  Årslønn  
+-------+---------+------------+-----------------------+--------+-------------+-------+-------------------+-----------
+    11 | Oliver  | Abrahamsen | Tarjei Vesaas' vei 3A | 3812   | 1989-01-20  | M     | Lagermedarbeider  | 466900.00
+    16 | Andrine | Ebbesen    | Kristianias gate 9    | 3800   | 1988-12-27  | K     | Regnskapssekretær | 532300.00
+(2 rows)
+
 
 ## Oppgave 3: Gruppering og Sortering
 1.  `SELECT * FROM Vare ORDER BY Pris DESC;`
